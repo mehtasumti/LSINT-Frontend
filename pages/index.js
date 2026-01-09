@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         <div className={styles.featureCard}>
           <h3>GitHub Actions Sumti</h3>
-          <p>Testing this for GitHub Actions</p>
+          <p>Testing this for GitHub Actions using git</p>
         </div>
       </div>
     </div>
