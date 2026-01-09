@@ -46,6 +46,10 @@ export default function Home() {
           <h3>Full-Service Agency</h3>
           <p>App development, graphic design, product photography, and consulting services</p>
         </div>
+        <div className={styles.featureCard}>
+          <h3>GitHub Actions Sumti</h3>
+          <p>Testing this for GitHub Actions</p>
+        </div>
       </div>
     </div>
   );
