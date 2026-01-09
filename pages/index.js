@@ -50,6 +50,10 @@ export default function Home() {
           <h3>GitHub Actions Sumti</h3>
           <p>Testing this for GitHub Actions using git</p>
         </div>
+        <div className={styles.featureCard}>
+          <h3>GitHub Actions Mehta</h3>
+          <p>Testing this for GitHub Actions using VS</p>
+        </div>
       </div>
     </div>
   );
