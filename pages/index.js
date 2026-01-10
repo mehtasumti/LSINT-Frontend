@@ -49,10 +49,10 @@ export default function Home() {
         <div className={styles.featureCard}>
           <h3>GitHub Actions Sumti</h3>
           <p>Testing this for GitHub Actions for Interview Test</p>
-        <div className={styles.featureCard}>
-          <h3>Git Action</h3>
-          <p>Testing this for GitHub Actions for Interview Test</p>
         </div>
+        <div className={styles.featureCard}>
+          <h3>Final Deployment Sumti</h3>
+          <p>Testing this for GitHub Actions for final submission.</p>
         </div>
       </div>
     </div>
