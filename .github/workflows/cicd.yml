@@ -1,0 +1,41 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches: [main]  # Triggers when you push to main in Frontend repo
+  workflow_dispatch:   # Allow manual runs
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout this repo (Frontend)
+      - uses: actions/checkout@v4
+        # Testing: uses mehtasumti/LSINT-Frontend (your fork)
+        # Production: switch repo in GitHub settings or use original upstream
+
+      - name: Docker login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & push frontend
+        run: |
+          # Testing: uses your EC2 IP
+          docker build -f Dockerfile \
+            --build-arg NEXT_PUBLIC_API_URL=http://63.179.148.174:5000/api \
+            -t mehtasumti/lsint-frontend:latest .
+          # Production: update IP to production backend URL
+          docker push mehtasumti/lsint-frontend:latest
+
+      - name: Deploy frontend to EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/LSINT-Task
+            sudo docker compose pull frontend
+            sudo docker compose up -d frontend
